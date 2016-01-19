@@ -49,7 +49,11 @@ class StdOutListener(StreamListener):
             retweeted_status=jsonData['retweeted_status']
             #print retweeted_status
             #print jsonData['text']
-            print jsonData
+            #print jsonData
+            with open(self.filename, 'ab') as f:
+                print "writing to {}".format(self.filename)
+                f.write(data)
+            f.closed   
         except:
             pass
             #print jsonData
