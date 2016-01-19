@@ -33,25 +33,27 @@ class StdOutListener(StreamListener):
             f = file(self.filename, 'w')
             f.close()
         with open(self.filename, 'ab') as f:
-            retweeted_status = "///////////////////"
-            try:
-                retweeted_status=jsonData['retweeted_status']
-                #print retweeted_status
-                #print jsonData['text']
-                #print jsonData
-                print "writing to {}".format(self.filename)
-                f.write(data)
-            except:
-                pass
-
+            #print "writing to {}".format(self.filename)
+            #f.write(data)
+            0+0
         f.closed
 #        return True
-#        jsonData=json.loads(data)
-#        text=jsonData['text']
-#        text2=jsonData['entities']['hashtags']
-#        for hashtag in text2:
-#             text2=hashtag['text']
-#        print text+str(text2)
+        jsonData=json.loads(data)
+        text=jsonData['text']
+        text2=jsonData['entities']['hashtags']
+        for hashtag in text2:
+             text2=hashtag['text']
+        #print text+str(text2)
+        retweeted_status = "///////////////////"
+        try:
+            retweeted_status=jsonData['retweeted_status']
+            #print retweeted_status
+            #print jsonData['text']
+            print jsonData
+        except:
+            pass
+            #print jsonData
+            #f.write(data)
         return True
         
     # this is the event handler for errors    
@@ -74,5 +76,5 @@ if __name__ == '__main__':
     print "Use CTRL + C to exit at any time.\n"
     stream = Stream(auth, listener)
     #stream.filter(track=['#felipe'], locations=[-180,-90,180,90]) # this is the entire world, any tweet with geo-location enabled
-    #stream.filter(track=['obama']) 
-    stream.filter(locations=[-180,-90,180,90]) 
+    stream.filter(track=['obama']) 
+    #stream.filter(locations=[-180,-90,180,90]) 
